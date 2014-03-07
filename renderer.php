@@ -290,7 +290,7 @@ $this->page->requires->js_init_call('M.qtype_easyoddname.dragndrop', array($qa->
         $question = $qa->get_question();
 
         $answer = $question->get_matching_answer($question->get_correct_response());
-	var_dump($answer);
+//	var_dump($answer);
         if (!$answer) {
             return '';
         }
