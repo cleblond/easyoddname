@@ -187,6 +187,9 @@ $easyoddnamebuildstring = $temp;
                 question_bank::fraction_options());
 
         $this->add_interactive_settings();
+///YUI version of insert
+	$PAGE->requires->js_init_call('M.qtype_easyoddname.init_getanswerstring', array($CFG->version));
+
     }
 	
 	protected function get_per_answer_fields($mform, $label, $gradeoptions,
@@ -198,8 +201,10 @@ $easyoddnamebuildstring = $temp;
 		//construct the insert button
 //crl mrv		$scriptattrs = 'onClick = "getSmilesEdit(this.name, \'cxsmiles:u\')"';
 		//echo "num".$numofstereo;
-		$scriptattrs = 'onClick = "getSmilesEdit(this.name)"';
+		$scriptattrs = 'class = id_insert';
 
+
+//html_writer::tag('input', '', array('class' => 'arrowbutton','id' => 'showorderrev'.$qa->get_slot(), 'type' => 'button','value' => 'Reverse'));
 
         $insert_button = $mform->createElement('button','insert',get_string('insertfromeditor', 'qtype_easyoddname'),$scriptattrs);
         array_splice($repeated, 2, 0, array($insert_button));
