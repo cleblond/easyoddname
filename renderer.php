@@ -30,7 +30,7 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Generates the output for easyoddname questions.
  *
- * @copyright  2009 The Open University
+ * @copyright  2014 onwards Carl LeBlond 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_easyoddname_renderer extends qtype_renderer {
