@@ -1,79 +1,6 @@
 
 
-
-///modified by crl
-function getSmilesEdit(buttonname){
-    var buttonnumber = buttonname.slice(7,-1);
-	//console.log(numofstereo);
-	
-//		 var items = document.getElementsByTagName("li");
-		var items = document.getElementById('list1').childNodes;
-	            var out = ""; 
-	            for (i=1;i<items.length;i=i+1) {
-			if (i == items.length - 1){
-	                out += items[i].innerHTML;
-			}
-			else{
-			out += items[i].innerHTML;
-			}
-	            } 
-
-		
-
-
-
-
-	textfieldid = 'id_answer_' + buttonnumber;
-	document.getElementById(textfieldid).value = out;
-//	alert('here');
-}
-
-
-
-
-
-M.qtype_easyoddname={
-    insert_structure_into_applet : function(Y, numofstereo){
-		var textfieldid = 'id_answer_0';
-		if(document.getElementById(textfieldid).value != '') {
-		//console.log('stereo'+numofstereo);
-		var s = document.getElementById(textfieldid).value;
-		//console.log(s);
-
-		var positions=2*numofstereo+2;
-		var groups = s.split("-");
-
-		//console.log(groups);
-
-
-		for (var i=0;i<positions;i++)
-		{
-		//document.write(cars[i] + "<br>");
-
-		var elem = document.createElement("img");
-		
-		group = groups[i];
-		trimgroup = group.substring(0, group.length - 1);
-		elem.setAttribute("src", "type/easyoddname/pix/"+trimgroup+".png");
-		elem.setAttribute("id", group+i);
-		elem.setAttribute("height", "30");
-		elem.setAttribute("width", "40");
-		document.getElementById("pos"+i).appendChild(elem);
-		document.getElementById("apos"+i).value=group;
-
-		}
-
-
-
-
-
-
-
-		//document.MSketch.setMol(s, 'cxsmiles');
-		}
-
-	}
-}
+M.qtype_easyoddname={}
 
 
 
@@ -320,7 +247,46 @@ YUI().use('dd-constrain', 'dd-proxy', 'dd-drop', function(Y) {
 
 
 
+M.qtype_easyoddname.init_getanswerstring = function(Y, moodle_version){
+    var handleSuccess = function(o) {
 
+    };
+    var handleFailure = function(o) {
+        /*failure handler code*/
+    };
+    var callback = {
+        success:handleSuccess,
+        failure:handleFailure
+    };
+    if (moodle_version >= 2012120300) { //Moodle 2.4 or higher
+        YAHOO = Y.YUI2;
+    }
+
+
+    Y.all(".id_insert").each(function(node) {
+    	node.on("click", function () {
+
+	//        alert(node.getAttribute("id"));
+
+		var items = document.getElementById('list1').childNodes;
+	            var out = ""; 
+	            for (i=1;i<items.length;i=i+1) {
+			if (i == items.length - 1){
+	                out += items[i].innerHTML;
+			}
+			else{
+			out += items[i].innerHTML;
+			}
+	            } 
+	
+        var buttonid = node.getAttribute("id");
+	textfieldid = 'id_answer_' + buttonid.substr(buttonid.length - 1);
+	document.getElementById(textfieldid).value = out;
+
+	//		alert(out);
+    	});
+    });
+};
 
 
 
