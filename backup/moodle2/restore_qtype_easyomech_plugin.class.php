@@ -29,7 +29,7 @@ defined('MOODLE_INTERNAL') || die();
  * restore plugin class that provides the necessary information
  * needed to restore one easyoddname qtype plugin
  *
- * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
+ * @copyright  2014 onwards Carl LeBlond
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class restore_qtype_easyoddname_plugin extends restore_qtype_plugin {
