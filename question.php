@@ -15,11 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * marvin Molecular Editor question definition class.
  *
  * @package    qtype
  * @subpackage easyoddname
- * @copyright  2011 The Open University
+ * @copyright  2014 onwards Carl LeBlond 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
