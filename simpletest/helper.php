@@ -19,7 +19,7 @@
  *
  * @package    qtype
  * @subpackage easyoddname
- * @copyright  2010 The Open University
+ * @copyright  2014 onwards Carl LeBlond 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
