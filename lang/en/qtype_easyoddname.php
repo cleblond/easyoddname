@@ -19,7 +19,7 @@
  *
  * @package    qtype
  * @subpackage easyoddname
- * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
+ * @copyright  2014 onwards Carl LeBlond 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -48,7 +48,7 @@ $string['pluginname_help'] = 'Draw a Fischer projection below.  Choose whether y
 $string['pluginname_link'] = 'question/type/easyoddname';
 $string['pluginnameadding'] = 'Adding a Drag and Drop Naming question';
 $string['pluginnameediting'] = 'Editing a Drag and Drop Naming question';
-$string['pluginnamesummary'] = 'Student must construct names of molecules by dragging and dropping parent and substituents into answer field.</li></ul>';
+$string['pluginnamesummary'] = 'Student must construct names of molecules by dragging and dropping parent and substituents into answer field.';
 $string['easyoddname_options'] = 'Marvin Applet options';
 $string['enablejava'] = 'Tried but failed to load javascript. You have not got a JAVA runtime environment working in your browser. You will need one to attempt this question.';
 $string['enablejavaandjavascript'] = 'Loading  editor.... If this message does not get replaced by the editor then you have not got javascript working in your browser.';
