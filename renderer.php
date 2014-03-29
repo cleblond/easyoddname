@@ -23,9 +23,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 defined('MOODLE_INTERNAL') || die();
-
 
 /**
  * Generates the output for easyoddname questions.
@@ -36,25 +34,22 @@ defined('MOODLE_INTERNAL') || die();
 class qtype_easyoddname_renderer extends qtype_renderer {
     public function formulation_and_controls(question_attempt $qa,
             question_display_options $options) {
-		global $CFG, $PAGE;
-		
+        global $CFG, $PAGE;
+
         $question = $qa->get_question();
-	$currentanswer = $qa->get_last_qt_var('answer');
-	$inputname = $qa->get_qt_field_name('answer');
-	$inputattributes = array(
+        $currentanswer = $qa->get_last_qt_var('answer');
+        $inputname = $qa->get_qt_field_name('answer');
+        $inputattributes = array(
             'type' => 'text',
             'name' => $inputname,
             'value' => $currentanswer,
             'id' => $inputname,
             'size' => '80%',
         );
-	$feedbackimg = '';
 
+        $feedbackimg = '';
 
-
-
-
-	if ($options->correctness) {
+        if ($options->correctness) {
             $answer = $question->get_matching_answer(array('answer' => $currentanswer));
             if ($answer) {
                 $fraction = $answer->fraction;
@@ -65,39 +60,28 @@ class qtype_easyoddname_renderer extends qtype_renderer {
             $feedbackimg = $this->feedback_image($fraction);
         }
 
-//	$numofstereo=$question->numofstereo;
-		$questiontext = $question->format_questiontext($qa);
+        $questiontext = $question->format_questiontext($qa);
         $placeholder = false;
-	$myanswer_id = "my_answer".$qa->get_slot();
-	$correctanswer_id = "correct_answer".$qa->get_slot();
 
         if (preg_match('/_____+/', $questiontext, $matches)) {
             $placeholder = $matches[0];
-	    $inputattributes['size'] = round(strlen($placeholder) * 1.1);
+            $inputattributes['size'] = round(strlen($placeholder) * 1.1);
         }
-	
-	$result='';
 
+        $result = '';
 
         $toreplaceid = 'applet'.$qa->get_slot();
-       /* $toreplace = html_writer::tag('span',
-                                      get_string('enablejavaandjavascript', 'qtype_easyoddname'),
-                                      array('id' => $toreplaceid)); */
 
-	if ($options->readonly) {
-	$inputattributes['readonly'] = 'readonly';	
-	$input = html_writer::empty_tag('input', $inputattributes) . $feedbackimg;
-	}
-	else{
-	$input="";
-	}
-
-
+        if ($options->readonly) {
+            $inputattributes['readonly'] = 'readonly';
+            $input = html_writer::empty_tag('input', $inputattributes) . $feedbackimg;
+        } else {
+            $input = "";
+        }
 
         if ($placeholder) {
-	
-         
-           $inputinplace = html_writer::tag('label', get_string('answer'),
+
+            $inputinplace = html_writer::tag('label', get_string('answer'),
                     array('for' => $inputattributes['id'], 'class' => 'accesshide'));
             $inputinplace .= $input;
             $questiontext = substr_replace($questiontext, $inputinplace,
@@ -107,113 +91,43 @@ class qtype_easyoddname_renderer extends qtype_renderer {
 
         $result .= html_writer::tag('div', $questiontext, array('class' => 'qtext'));
 
-
-
-/////crl
-//$result .= html_writer::tag('textarea', "every page here");
-
-	
         if (!$placeholder) {
-         
-//            $result .= html_writer::tag('span', get_string('answer', 'qtype_easyoddname', ''),
-//                                            array('class' => 'answerlabel'));
-$answer = $question->get_correct_response();
+            $answer = $question->get_correct_response();
+            $coranswer = str_replace("|", "", $answer['answer']);
+            $response = str_replace("|", "", $qa->get_last_qt_var('answer'));
 
-
-$coranswer = str_replace("|", "", $answer['answer']);
-$response = str_replace("|", "", $qa->get_last_qt_var('answer'));
-
-
-           $result .= html_writer::start_tag('div', array('class' => 'ablock'));
+            $result .= html_writer::start_tag('div', array('class' => 'ablock'));
             $result .= html_writer::tag('label', get_string('answer', 'qtype_shortanswer',
                     html_writer::tag('span', $input, array('class' => 'answer'))),
                     array('for' => $inputattributes['id']));
             $result .= html_writer::end_tag('div');
-
-
-
-//$result .= html_writer::tag('label', get_string('answer', 'qtype_easyoddname', html_writer::tag('span', $input, array('class' => 'answer'))), array('for' => $inputattributes['id']));
-
-
-//$result .= html_writer::tag('div', get_string('answer', 'qtype_easyoddname', s($coranswer)), array('class' => 'qtext'));
-
-
-//	$result .= html_writer::tag('div', get_string('youranswer', 'qtype_easyoddname', s($response)), array('class' => 'qtext'));
-
-
         }
-	
+
         if ($qa->get_state() == question_state::$invalid) {
             $lastresponse = $this->get_last_response($qa);
             $result .= html_writer::nonempty_tag('div',
                                                 $question->get_validation_error($lastresponse),
                                                 array('class' => 'validationerror'));
- 
-	
-       }
-	
+        }
 
-		/////read structure into divs
-		if ($options->readonly) {
-		    $currentanswer = $qa->get_last_qt_var('answer');
-
-		}
+        if ($options->readonly) {
+            $currentanswer = $qa->get_last_qt_var('answer');
+        }
 
         $result .= html_writer::tag('div',
                                     $this->hidden_fields($qa),
-                                    array('class' => 'inputcontrol')); 
+                                    array('class' => 'inputcontrol'));
 
-	if($options->readonly){
-	
-		//echo $CFG->dirroot;
-		//$temp = file_get_contents($CFG->dirroot .'/question/type/easyoddname/fischer'.$numofstereo.'.html');
-		//$temp = str_replace("slot", $qa->get_slot(), $temp);
-		//$result .= $temp;
-		//$result .= "</div></html>";
+        if (!$options->readonly) {
+            $temp = file_get_contents($CFG->dirroot .'/question/type/easyoddname/dragable.html');
+            $temp = str_replace("slot", $qa->get_slot(), $temp);
+            $result .= $temp;
+        }
 
-
-
-
-	}
-	else{
-
-
-	//	$temp = file_get_contents($CFG->dirroot .'/question/type/easyoddname/fischer'.$numofstereo.'.html');
-	//	$temp = str_replace("slot", $qa->get_slot(), $temp);
-	//	$result .= $temp;
-
-		$temp = file_get_contents($CFG->dirroot .'/question/type/easyoddname/dragable.html');
-		$temp = str_replace("slot", $qa->get_slot(), $temp);
-		$result .= $temp;
-		//$result .= "</div></html>";
-
-
-	}
-
-$this->page->requires->js_init_call('M.qtype_easyoddname.dragndrop', array($qa->get_slot()));
-
-     
+        $this->page->requires->js_init_call('M.qtype_easyoddname.dragndrop', array($qa->get_slot()));
         $this->require_js($qa, $options->readonly, $options->correctness);
-
-
-
-
         return $result;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // protected function require_js($toreplaceid, question_attempt $qa, $readonly, $correctness, $appletoptions) {
 
     protected function require_js(question_attempt $qa, $readonly, $correctness) {
         global $PAGE;
@@ -227,24 +141,22 @@ $this->page->requires->js_init_call('M.qtype_easyoddname.dragndrop', array($qa->
             )
         );
         $topnode = 'div.que.easyoddname#q'.$qa->get_slot();
-        //$appleturl = new moodle_url('appletlaunch.jar');
-	
+
         if ($correctness) {
             $feedbackimage = $this->feedback_image($this->fraction_for_last_response($qa));
         } else {
             $feedbackimage = '';
         }
-	//echo "HHHHEREEEEERREE";
-        //$name = 'easyoddname'.$qa->get_slot();
-        //$appletid = 'easyoddname'.$qa->get_slot();
-	$stripped_answer_id="stripped_answer".$qa->get_slot();
+
+        $strippedanswerid = "stripped_answer".$qa->get_slot();
         $PAGE->requires->js_init_call('M.qtype_easyoddname.insert_easyoddname_applet',
                                       array($topnode,
                                             $feedbackimage,
                                             $readonly,
-					    $stripped_answer_id,$qa->get_slot()),
-                                      false,
-                                      $jsmodule);
+                                            $strippedanswerid,
+                                            $qa->get_slot()),
+                                            false,
+                                            $jsmodule);
     }
 
     protected function fraction_for_last_response(question_attempt $qa) {
@@ -290,15 +202,12 @@ $this->page->requires->js_init_call('M.qtype_easyoddname.dragndrop', array($qa->
         $question = $qa->get_question();
 
         $answer = $question->get_matching_answer($question->get_correct_response());
-//	var_dump($answer);
+
         if (!$answer) {
             return '';
         }
 
-//        return get_string('correctansweris', 'qtype_easyoddname', s($answer->answer));
         return get_string('correctansweris', 'qtype_easyoddname', s($answer->answer));
-
-
     }
 
     protected function hidden_fields(question_attempt $qa) {

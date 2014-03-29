@@ -26,188 +26,60 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-
-/**
- * easyoddname question editing form definition.
- *
- * @copyright  2014 onwards Carl LeBlond 
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
 require_once($CFG->dirroot . '/question/type/shortanswer/edit_shortanswer_form.php');
 
-
-/**
- * Calculated question type editing form definition.
- *
- * @copyright  2007 Jamie Pratt me@jamiep.org
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
 class qtype_easyoddname_edit_form extends qtype_shortanswer_edit_form {
 
     protected function definition_inner($mform) {
-		global $PAGE, $CFG, $question, $DB, $numofstereo;
-		
-		$PAGE->requires->js('/question/type/easyoddname/easyoddname_script.js');
-		$PAGE->requires->css('/question/type/easyoddname/styles.css');
-               // $mform->addElement('hidden', 'usecase', 1);
-		if(isset($question->id)){
-		$record = $DB->get_record('question_easyoddname', array('question' => $question->id ));
-		$numofstereo = $record->numofstereo;
-		//echo $stagoreclip;
-		}
-		else{
-		$numofstereo = 1;
-		}
-	//echo required_param('id',0);
-	
-	//echo $question->id;
-	//var_dump($question);
-	//echo required_param('stagoreclip', PARAM_INT);
-
-        
- $mform->addElement('static', 'answersinstruct',
-                get_string('correctanswers', 'qtype_easyoddname'),
-                get_string('filloutoneanswer', 'qtype_easyoddname'));
+        global $PAGE, $CFG, $question, $DB;
+        $PAGE->requires->js('/question/type/easyoddname/easyoddname_script.js');
+        $PAGE->requires->css('/question/type/easyoddname/styles.css');
+        if (isset($question->id)) {
+                $record = $DB->get_record('question_easyoddname', array('question' => $question->id ));
+        }
+        $mform->addElement('static', 'answersinstruct',
+        get_string('correctanswers', 'qtype_easyoddname'),
+        get_string('filloutoneanswer', 'qtype_easyoddname'));
         $mform->closeHeaderBefore('answersinstruct');
+        $temp = file_get_contents('type/easyoddname/dragable.html');
+        $temp = str_replace("slot", "", $temp);
+        $easyoddnamebuildstring = $temp;
 
+                $mform->addElement('html', $easyoddnamebuildstring);
 
-/*
- $menu = array(
-            get_string('staggered', 'qtype_easyoddname'),
-            get_string('eclipsed', 'qtype_easyoddname')	    
-        );
-        $mform->addElement('select', 'stagoreclip',
-                get_string('casestagoreclip', 'qtype_easyoddname'), $menu);
-*/
+                        $jsmodule = array(
+                            'name'     => 'qtype_easyoddname',
+                            'fullpath' => '/question/type/easyoddname/easyoddname_script.js',
+                            'requires' => array(),
+                            'strings' => array(
+                                array('enablejava', 'qtype_easyoddname')
+                            )
+                        );
 
+        $htmlid = 1;
+        $module = array('name' => 'easyoddname',
+        'fullpath' => '/question/type/easyoddname/module.js', 'requires' => array('yui2-treeview'));
 
-
-
-       
-		
-//		$appleturl = new moodle_url('/question/type/easyoddname/easyoddname/easyoddname.jar');
-
-
-		//get the html in the easyoddnamelib.php to build the applet
-//	    $easyoddnamebuildstring = "\n<applet code=\"easyoddname.class\" name=\"easyoddname\" id=\"easyoddname\" archive =\"$appleturl\" width=\"460\" height=\"335\">" .
-//	  "\n<param name=\"options\" value=\"" . $CFG->qtype_easyoddname_options . "\" />" .
-//      "\n" . get_string('javaneeded', 'qtype_easyoddname', '<a href="http://www.java.com">Java.com</a>') .
-//	  "\n</applet>";
-	//echo $data['stagoreclip'];
-
-
-//$easyoddnamebuildstring=file_get_contents('type/easyoddname/edit_fischer1.html');
-
-//$temp=$temp = str_replace("slot", $qa->get_slot(), $temp);
-
-$temp=file_get_contents('type/easyoddname/dragable.html');
-$temp = str_replace("slot", "", $temp);
-
-$easyoddnamebuildstring = $temp;
-
-
-
-//echo "here".$easyoddnamebuildstring;
-
-	//echo $mform->get_data();
-
-
-
-
-        //output the marvin applet
-        //$mform->addElement('html', html_writer::start_tag('div', array('style'=>'width:650px;')));
-		//$mform->addElement('html', html_writer::start_tag('div', array('style'=>'float: right;font-style: italic ;')));
-		//$mform->addElement('html', html_writer::start_tag('small'));
-		//$easyoddnamehomeurl = 'http://www.easyochem.com';
-		//$mform->addElement('html', html_writer::link($easyoddnamehomeurl, get_string('easyoddnameeditor', 'qtype_easyoddname')));
-		//$mform->addElement('html', html_writer::empty_tag('br'));
-		//$mform->addElement('html', html_writer::tag('span', get_string('author', 'qtype_easyoddname'), array('class'=>'easyoddnameauthor')));
-		//$mform->addElement('html', html_writer::end_tag('small'));
-		//$mform->addElement('html', html_writer::end_tag('div'));
-
-
-//		$mform->addElement('html', html_writer::start_tag('div', array('id'=>'fischer_template', 'width'=>'650px')));
-		$mform->addElement('html',$easyoddnamebuildstring);
-//		$mform->addElement('html', html_writer::end_tag('div'));
-
-
-
-		//$mform->addElement('html', html_writer::end_tag('div'));
-
-			$jsmodule = array(
-			    'name'     => 'qtype_easyoddname',
-			    'fullpath' => '/question/type/easyoddname/easyoddname_script.js',
-			    'requires' => array(),
-			    'strings' => array(
-				array('enablejava', 'qtype_easyoddname')
-			    )
-			);
-
-
-
-
-	    $htmlid=1;
- 	    $module = array('name'=>'easyoddname', 'fullpath'=>'/question/type/easyoddname/module.js', 'requires'=>array('yui2-treeview'));
-	    //$htmlid = 'private_files_tree_'.uniqid();
-            //$url = 'http://localhost/eolms/question/type/easyoddname/template_update.php?htmlid='+$htmlid;
-		$url = $CFG->wwwroot . '/question/type/easyoddname/template_update.php?numofstereo=';
-            //$this->page->requires->js_init_call('M.block_ejsapp_file_browser.init_tree', array(false, $htmlid));
-           // $PAGE->requires->js_init_call('M.qtype_easyoddname.init_reload', array($url, $htmlid),		
-           //                           true,
-           //                           $jsmodule);
-	   $PAGE->requires->js_init_call('M.qtype_easyoddname.dragndrop', array($url, $htmlid),		
+        $url = $CFG->wwwroot . '/question/type/easyoddname/template_update.php?numofstereo=';
+        $PAGE->requires->js_init_call('M.qtype_easyoddname.dragndrop', array($url, $htmlid),
                                       true,
                                       $jsmodule);
-           // $html = '<div id="'.$htmlid.'">';
-            //$html .= $this->htmllize_tree($tree, $tree->dir);
-            //$html .= '</div>';
-
-
-
-
-
-
-
-
-
-///crl add structure to page
-
-
-
-
-//	$PAGE->requires->js_init_call('M.qtype_easyoddname.insert_structure_into_applet',
-//                                      array($numofstereo),		
-//                                      true,
-//                                      $jsmodule);
-
-
-
 
         $this->add_per_answer_fields($mform, get_string('answerno', 'qtype_easyoddname', '{no}'),
                 question_bank::fraction_options());
-
         $this->add_interactive_settings();
-///YUI version of insert
-	$PAGE->requires->js_init_call('M.qtype_easyoddname.init_getanswerstring', array($CFG->version));
-
+        $PAGE->requires->js_init_call('M.qtype_easyoddname.init_getanswerstring', array($CFG->version));
     }
-	
-	protected function get_per_answer_fields($mform, $label, $gradeoptions,
+
+    protected function get_per_answer_fields($mform, $label, $gradeoptions,
             &$repeatedoptions, &$answersoption) {
-		global $numofstereo;
         $repeated = parent::get_per_answer_fields($mform, $label, $gradeoptions,
-                $repeatedoptions, $answersoption);
-		
-		//construct the insert button
-//crl mrv		$scriptattrs = 'onClick = "getSmilesEdit(this.name, \'cxsmiles:u\')"';
-		//echo "num".$numofstereo;
-		$scriptattrs = 'class = id_insert';
+        $repeatedoptions, $answersoption);
+        $scriptattrs = 'class = id_insert';
+        $insertbutton = $mform->createElement('button', 'insert', get_string('insertfromeditor',
+        'qtype_easyoddname'), $scriptattrs);
 
-
-//html_writer::tag('input', '', array('class' => 'arrowbutton','id' => 'showorderrev'.$qa->get_slot(), 'type' => 'button','value' => 'Reverse'));
-
-        $insert_button = $mform->createElement('button','insert',get_string('insertfromeditor', 'qtype_easyoddname'),$scriptattrs);
-        array_splice($repeated, 2, 0, array($insert_button));
+        array_splice($repeated, 2, 0, array($insertbutton));
 
         return $repeated;
     }

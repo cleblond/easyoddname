@@ -23,7 +23,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['easyoddname'] = "Drag and Drop Chem Nomenclature"; 
+$string['easyoddname'] = "Drag and Drop Chem Nomenclature";
 $string['caseconformtrue'] = 'True';
 $string['caseconformfalse'] = 'False';
 $string['caseconformimportant'] = '<b>Conformation Important</b><br/>Is the conformation important?  If "True" then a specific conformation must be draw.  (e.g. Draw butane in its gauche conformation)';

@@ -26,29 +26,15 @@
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/question/type/shortanswer/question.php');
-
-
-/**
- * Represents a easyoddname question.
-
- */
 class qtype_easyoddname_question extends qtype_shortanswer_question {
-	// all comparisons in easyoddname are case sensitive
+    // All comparisons in easyoddname are case sensitive...
 
-
-
-	public function compare_response_with_answer(array $response, question_answer $answer) {
-
-
+    public function compare_response_with_answer(array $response, question_answer $answer) {
         return self::compare_string_with_wildcard($response['answer'], $answer->answer, true);
-//        return self::compare_string_with_wildcard($arrowsusrall, $arrowsansall, false);
-
-
-
     }
 
-	
-	public function get_expected_data() {
+
+    public function get_expected_data() {
         return array('answer' => PARAM_RAW, 'easyoddname' => PARAM_RAW, 'mol' => PARAM_RAW);
     }
 }
