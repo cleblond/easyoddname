@@ -45,7 +45,7 @@ class qtype_easyoddname_edit_form extends qtype_shortanswer_edit_form {
         $temp = str_replace("slot", "", $temp);
         $easyoddnamebuildstring = $temp;
 
-                $mform->addElement('html', $easyoddnamebuildstring);
+        $mform->addElement('html', $easyoddnamebuildstring);
 
                         $jsmodule = array(
                             'name'     => 'qtype_easyoddname',

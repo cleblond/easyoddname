@@ -1,16 +1,19 @@
+.que.easyoddname .answer {
+    padding: 0.3em;
+    width: auto;
+    display: inline;
+}
+.que.easyoddname .answer input {
+    width: 80%;
+}
+
 #play {
     border: 1px solid #000000;
     margin: 10px;
     padding: 10px; 
 }
 
-#answerdiv {
-/*
-    border: 2px solid green;
-    height: 2em;
-    margin: 10px;
-    padding: 10px;  */
-}
+
 
 
 
@@ -21,6 +24,15 @@
     display: block;
     height: 0;
     visibility: hidden;
+}
+
+
+
+ul.dropable {
+
+height:2.1em;
+border: 2px solid green;
+
 }
 
 
@@ -75,14 +87,15 @@ ul#list1 .list2 {
 }
 
 
-#play ul li {
+ul.dragable li {
     background-image: none;
     cursor: move;
     list-style-type: none;
 /*    margin: 2px;
     padding: 5px; */
     position: relative;
-    font-size: 2em;  
+    font-size: 1.5em;
+    margin-right: 4px;  
 }
 
 
@@ -93,7 +106,7 @@ ul#list1 .list2 {
 /*    border: 1px solid #004C6D; */
     display: inline;
 }
-#play ul li.list2 {
+ul li.list2 {
     background-color: #EDFF9F;
     border: 1px solid #CDCDCD;
     display: inline-block;
@@ -107,3 +120,11 @@ padding: 10px;
 
 
 }
+
+
+.dropable {
+cursor: move;
+padding: 10px;
+font-size: 1.5em;
+}
+
