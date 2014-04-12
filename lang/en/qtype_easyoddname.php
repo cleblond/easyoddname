@@ -27,7 +27,7 @@
 $string['parenthydrocarbon'] = "Parent Hydrocarbon Chain";
 $string['parentfunctgroup'] = "Parent Functional Group";
 $string['subsgroups'] = "Substituents/Groups";
-$string['prefixes'] = "Substituents/Groups";
+$string['prefixes'] = "Prefixes";
 $string['draghere'] = "<strong>Drag and Drop Groups into this Box</strong>";
 
 $string['easyoddname'] = "Drag and Drop Chem Nomenclature";

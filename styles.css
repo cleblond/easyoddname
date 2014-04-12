@@ -13,11 +13,6 @@
     padding: 10px; 
 }
 
-
-
-
-
-
 #play:after {
     clear: both;
     content: ".";
@@ -26,50 +21,38 @@
     visibility: hidden;
 }
 
-
-
 ul.dropable {
-
-height:2.1em;
+height:1.5em;
 border: 2px solid green;
-
 }
 
+.dropable {
+cursor: move;
+padding: 10px;
+font-size: 1.5em;
+}
 
+ul.dragable li {
+    background-image: none;
+    cursor: move;
+    list-style-type: none;
+    position: relative;
+    font-size: 1.5em;
+    margin-right: 4px;  
+}
 
 /*
-#play ul.list1 {
-    border: 1px solid #000000;
-    float: left;
-    height: 300px;
-/*    margin: 10px;  */
-    padding: 0;
-    position: relative;
-/*    width: 200px;  
-}
-*/
-
-
-
 ul#list1 .list2 {
-/*    border: 1px solid #000000; */
-/*    display:inline-block;*/
     float: left;  
     height: 300px;
-/*    margin: 10px;  */
     padding: 0;
     position: relative;
     width: 600px;  
     padding-top: 20px;
 }
-
-
-
-
-
+*/ 
 
 #play ul.list2 {
-/*    border: 1px solid #000000; */
     float: left;
     height: 300px;
     margin: 10px; 
@@ -80,26 +63,9 @@ ul#list1 .list2 {
 }
 
 #list4 {
-/*    border: 1px solid #000000; */
     float: left;
     line-height:2em;
-/*    width: 200px;   */
 }
-
-
-ul.dragable li {
-    background-image: none;
-    cursor: move;
-    list-style-type: none;
-/*    margin: 2px;
-    padding: 5px; */
-    position: relative;
-    font-size: 1.5em;
-    margin-right: 4px;  
-}
-
-
-
 
 #play ul li.list1 {
     background-color: #8DD5E7;
@@ -114,17 +80,12 @@ ul li.list2 {
 }
 
 ul#list1 {
-
 padding: 10px;
+}
 
-
-
+#trashcan {
+float: right;
 }
 
 
-.dropable {
-cursor: move;
-padding: 10px;
-font-size: 1.5em;
-}
 

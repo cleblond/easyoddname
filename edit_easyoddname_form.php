@@ -41,11 +41,117 @@ class qtype_easyoddname_edit_form extends qtype_shortanswer_edit_form {
         get_string('correctanswers', 'qtype_easyoddname'),
         get_string('filloutoneanswer', 'qtype_easyoddname'));
         $mform->closeHeaderBefore('answersinstruct');
-        $temp = file_get_contents('type/easyoddname/dragable.html');
-        $temp = str_replace("slot", "", $temp);
-        $easyoddnamebuildstring = $temp;
 
-        $mform->addElement('html', $easyoddnamebuildstring);
+
+        $result = html_writer::start_tag('div', array('id' => 'play'));
+        $result .= html_writer::start_tag('div',
+            array('id' => 'answerdiv', 'class' => 'answerdiv'));
+        $result .= html_writer::tag('p', get_string('draghere', 'qtype_easyoddname'));
+        $result .= html_writer::tag('ul', '', array('class' => 'dropable', 'id' => 'list1'));
+
+        $trashpixurl = "/eolms/question/type/easyoddname/pix/trash.png";
+        $trashhtml = html_writer::empty_tag('img',
+            array('id' => 'trashcan', 'class' => 'dropable', 'src' => $trashpixurl, 'alt' => 'trash'));
+        $result .= html_writer::tag('ul', $trashhtml, array('id' => 'trash'));
+        $result .= html_writer::end_tag('div');  // End answerdiv!
+
+        $result .= html_writer::tag('p', get_string('parenthydrocarbon', 'qtype_easyoddname'));
+        $result .= html_writer::start_tag('ul', array('class' => 'dragable', 'id' => 'list2'));
+        $result .= html_writer::tag('li', 'meth' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'eth' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'prop' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'but' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'pent' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'hex' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'hept' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'oct' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'non' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'dec' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'benzene' , array('class' => 'list2'));
+        $result .= html_writer::end_tag('ul');
+
+        $result .= html_writer::tag('p', get_string('parentfunctgroup', 'qtype_easyoddname'));
+        $result .= html_writer::start_tag('ul', array('class' => 'dragable', 'id' => 'list3'));
+        $result .= html_writer::tag('li', 'ane' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'an' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'ene' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'en' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'yne' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'yn' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'ol' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'al' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'oic acid' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'one' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'ate' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'amide' , array('class' => 'list2'));
+        $result .= html_writer::end_tag('ul');
+
+        $result .= html_writer::tag('p', get_string('subsgroups', 'qtype_easyoddname'));
+        $result .= html_writer::start_tag('ul', array('class' => 'dragable', 'id' => 'list3'));
+        $result .= html_writer::tag('li', 'methyl' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'ethyl' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'propyl' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'butyl' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'pentyl' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'hexyl' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'heptyl' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'octyl' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'nonyl' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'decyl' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'fluoro' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'chloro' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'bromo' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'iodo' , array('class' => 'list2'));
+        $result .= html_writer::end_tag('ul');
+
+        $result .= html_writer::tag('p', get_string('prefixes', 'qtype_easyoddname'));
+        $result .= html_writer::start_tag('ul', array('class' => 'dragable', 'id' => 'list3'));
+        $result .= html_writer::tag('li', 'di' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'tri' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'tetra' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'penta' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'hexa' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'cyclo' , array('class' => 'list2'));
+        $result .= html_writer::end_tag('ul');
+
+        $result .= html_writer::start_tag('ul', array('class' => 'dragable', 'id' => 'list3'));
+        $result .= html_writer::tag('li', 'N' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', '1' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', '2' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', '3' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', '4' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', '5' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', '6' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', '7' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', '8' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', '9' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', '10' , array('class' => 'list2'));
+        $result .= html_writer::end_tag('ul');
+
+        $result .= html_writer::start_tag('ul', array('class' => 'dragable', 'id' => 'list3'));
+        $result .= html_writer::tag('li', 'R' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'S' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'E' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'Z' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'o' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'm' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', 'p' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', '&nbsp;(&nbsp;' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', '&nbsp;)&nbsp;' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', '&nbsp;-&nbsp;' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', '&nbsp;,&nbsp;' , array('class' => 'list2'));
+        $result .= html_writer::tag('li', '&nbsp;&nbsp;' , array('class' => 'list2'));
+        $result .= html_writer::end_tag('ul');
+        $result .= html_writer::end_tag('div');  // End play div!
+
+//        $temp = file_get_contents('type/easyoddname/dragable.html');
+//        $temp = str_replace("slot", "", $temp);
+//        $easyoddnamebuildstring = $temp;
+        $mform->addElement('html', $result);
+//        $mform->addElement('html', $easyoddnamebuildstring);
+
+
+
 
                         $jsmodule = array(
                             'name'     => 'qtype_easyoddname',
@@ -57,8 +163,8 @@ class qtype_easyoddname_edit_form extends qtype_shortanswer_edit_form {
                         );
 
         $htmlid = 1;
-        $module = array('name' => 'easyoddname',
-        'fullpath' => '/question/type/easyoddname/module.js', 'requires' => array('yui2-treeview'));
+//        $module = array('name' => 'easyoddname',
+//        'fullpath' => '/question/type/easyoddname/module.js', 'requires' => array('yui2-treeview'));
 
         $url = $CFG->wwwroot . '/question/type/easyoddname/template_update.php?numofstereo=';
         $PAGE->requires->js_init_call('M.qtype_easyoddname.dragndrop', array($url, $htmlid),
