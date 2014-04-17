@@ -126,7 +126,7 @@ class qtype_easyoddname_renderer extends qtype_renderer {
             $result .= html_writer::tag('p', get_string('draghere', 'qtype_easyoddname'));
             $result .= html_writer::tag('ul', '', array('class' => 'dropable', 'id' => 'list1'.$qa->get_slot()));
 
-            $trashpixurl = "/eolms/question/type/easyoddname/pix/trash.png";
+            $trashpixurl = $CFG->wwwroot."/question/type/easyoddname/pix/trash.png";
             $trashhtml = html_writer::empty_tag('img',
                 array('id' => 'trashcan', 'class' => 'dropable', 'src' => $trashpixurl, 'alt' => 'trash'));
             $result .= html_writer::tag('ul', $trashhtml, array('id' => 'trash'));

@@ -49,7 +49,7 @@ class qtype_easyoddname_edit_form extends qtype_shortanswer_edit_form {
         $result .= html_writer::tag('p', get_string('draghere', 'qtype_easyoddname'));
         $result .= html_writer::tag('ul', '', array('class' => 'dropable', 'id' => 'list1'));
 
-        $trashpixurl = "/eolms/question/type/easyoddname/pix/trash.png";
+        $trashpixurl = $CFG->wwwroot."/question/type/easyoddname/pix/trash.png";
         $trashhtml = html_writer::empty_tag('img',
             array('id' => 'trashcan', 'class' => 'dropable', 'src' => $trashpixurl, 'alt' => 'trash'));
         $result .= html_writer::tag('ul', $trashhtml, array('id' => 'trash'));
@@ -174,7 +174,7 @@ class qtype_easyoddname_edit_form extends qtype_shortanswer_edit_form {
         $this->add_per_answer_fields($mform, get_string('answerno', 'qtype_easyoddname', '{no}'),
                 question_bank::fraction_options());
         $this->add_interactive_settings();
-        $PAGE->requires->js_init_call('M.qtype_easyoddname.init_getanswerstring', array($CFG->version));
+        $PAGE->requires->js_init_call('M.qtype_easyoddname.init_getanswerstring', array($CFG->version), true, $jsmodule);
     }
 
     protected function get_per_answer_fields($mform, $label, $gradeoptions,
