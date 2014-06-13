@@ -213,11 +213,11 @@ class qtype_easyoddname_renderer extends qtype_renderer {
             $result .= html_writer::tag('li', 'o' , array('class' => 'list2'));
             $result .= html_writer::tag('li', 'm' , array('class' => 'list2'));
             $result .= html_writer::tag('li', 'p' , array('class' => 'list2'));
-            $result .= html_writer::tag('li', '&nbsp;(&nbsp;' , array('class' => 'list2'));
-            $result .= html_writer::tag('li', '&nbsp;)&nbsp;' , array('class' => 'list2'));
-            $result .= html_writer::tag('li', '&nbsp;-&nbsp;' , array('class' => 'list2'));
-            $result .= html_writer::tag('li', '&nbsp;,&nbsp;' , array('class' => 'list2'));
-            $result .= html_writer::tag('li', '&nbsp;&nbsp;' , array('class' => 'list2'));
+            $result .= html_writer::tag('li', '(' , array('class' => 'list2'));
+            $result .= html_writer::tag('li', ')' , array('class' => 'list2'));
+            $result .= html_writer::tag('li', '-' , array('class' => 'list2'));
+            $result .= html_writer::tag('li', ',' , array('class' => 'list2'));
+            $result .= html_writer::tag('li', '' , array('class' => 'list2'));
             $result .= html_writer::end_tag('ul');
 
             $result .= html_writer::end_tag('div');  // End play div!

@@ -270,7 +270,7 @@ M.qtype_easyoddname.init_getanswerstring = function(Y, moodle_version){
 
 		var items = document.getElementById('list1').childNodes;
 	            var out = ""; 
-	            for (i=1;i<items.length;i=i+1) {
+	            for (i=0;i<items.length;i=i+1) {
 			if (i == items.length - 1){
 	                out += items[i].innerHTML;
 			}
